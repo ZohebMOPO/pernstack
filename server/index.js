@@ -5,8 +5,6 @@ const cors = require('cors');
 const pool = require('./db');
 // middleware
 
-
-
 app.use(cors());
 app.use(express.json());
 // Routes 
@@ -56,6 +54,16 @@ app.put("/notes/:id", async(req,res) => {
     }
 })
 
+// Delete a note
+app.delete("/notes/:id", async(req,res) => {
+    try {
+        const { id } = req.params;
+        const deleteNote = await pool.query("DELETE FROM note WHERE docs_id = $1",[id]);
+        res.json("Note was Deleted!")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
 app.listen(3001, () => {
     console.log("Started on 3001")
