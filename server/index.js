@@ -5,7 +5,8 @@ const cors = require('cors');
 const pool = require('./db');
 // middleware
 
-;
+
+
 app.use(cors());
 app.use(express.json());
 // Routes 
@@ -41,6 +42,7 @@ app.get("/notes/:id", async(req,res) => {
     }
 })
 
+
 // Update a note
 app.put("/notes/:id", async(req,res) => {
     try {
@@ -48,11 +50,12 @@ app.put("/notes/:id", async(req,res) => {
         const { title, description } = req.body;
         const updateNote = await pool.query("UPDATE note SET (description,title) = ($1,$2) WHERE docs_id = $3", [description,title,id])
 
-        res.json("Todo was Updated!")
+        res.json("Note Updated")
     } catch (err) {
         console.error(err.message);
     }
 })
+
 
 app.listen(3001, () => {
     console.log("Started on 3001")
