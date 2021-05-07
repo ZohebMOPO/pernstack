@@ -5,7 +5,9 @@ import './App.css';
 function App() {
   return (
     <Fragment>
-      <InputNote />
+      <div className="container">
+        <InputNote />
+      </div>
     </Fragment>
   );
 }
