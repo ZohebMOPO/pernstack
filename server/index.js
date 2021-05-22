@@ -17,7 +17,7 @@ app.post("/notes", async(req,res) => {
         );
         res.json(newNote.rows);
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
     }
 })
 // Get All Notes
